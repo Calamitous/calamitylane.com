@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: programming | Calamity Lane]]></title>
+  <link href="http://calamitylane.com/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://calamitylane.com/"/>
+  <updated>2015-02-26T13:31:42-06:00</updated>
+  <id>http://calamitylane.com/</id>
+  <author>
+    <name><![CDATA[Eric B. Budd]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Redir is Awesome]]></title>
+    <link href="http://calamitylane.com/programming/redir-is-awesome/"/>
+    <updated>2012-11-19T11:30:00-06:00</updated>
+    <id>http://calamitylane.com/programming/redir-is-awesome</id>
+    <content type="html"><![CDATA[<p>More than anything, I love tiny tools that do one thing, and do it well.  The UNIX philosophy sends me into fits of programmery giggliness for precisely this reason.</p>
+
+<p>Recently I discovered a tiny new tool to add to my toolbox.  I had a test server running on port 3014, and needed to briefly expose it on port 80 (I know, I know, I've just made myself eligible for a righteous noodle-lashing).</p>
+
+<!--more-->
+
+
+<p>My first instinct was to turn to <a href="http://en.wikipedia.org/wiki/Netcat">netcat</a>.  I've tried netcat many times, and I love the <em>idea</em> of netcat, but I've never been able to use it in practice.  Due to the various incomprehensibly incompatible versions, simple tasks frequently requires 15+ minutes of Googling, sifting through old man pages, and idle experimentation.  The idea is great, the execution is utter failure.  Simple things aren't easy.</p>
+
+<p>Fortunately, I ran across a little program called <a href="http://linux.die.net/man/1/redir">redir</a>, which does
+exactly what I need (and, tangentially, is nearly impossible to Google).  I installed it on Ubuntu 12.04 using apt-get:</p>
+
+<p><code>bash
+sudo apt-get install redir
+</code></p>
+
+<p>This is likely to work on any Debian-based system.</p>
+
+<p>Once I had it installed, running it was straightforward:</p>
+
+<p><code>bash
+sudo redir --lport=80 --cport=3014
+</code></p>
+
+<p>Now, any (TCP) traffic coming into my box on port 80 is routed to my
+server on port 3014.</p>
+
+<p>Like any other UNIX-y tool, redir comes with two boatloads of extra options,
+flags, and tweaks, but my needs are simple, and handled by the basics of
+the tool.</p>
+
+<p>Small problem, small tool, simple solution.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hidden Chrome Features on CR-48]]></title>
+    <link href="http://calamitylane.com/programming/Hidden-Chrome-Features-on-CR-48/"/>
+    <updated>2010-12-31T00:00:00-06:00</updated>
+    <id>http://calamitylane.com/programming/Hidden-Chrome-Features-on-CR-48</id>
+    <content type="html"><![CDATA[<p>After having playing around with ChromeOS on the CR-48 netbook (<a href="http://calamitylane.com/articles/programming/chrome-os-on-the-cr-48-it-has-developer-bits">which I've blogged about before</a>), I've found a few more interesting tidbits that let you dig deeper into the system.</p>
+
+<br /><br /><br />
+
+
+<h2>tl;dr</h2>
+
+<ul>
+<li>Experimental Features/Flash Drives: chrome://flags</li>
+<li>Nicer View of Memory Usage: about:memory</li>
+<li>Hilarious Pranks: about:crash</li>
+<li>Wi-Fi Troubleshooting: about:network</li>
+<li>Manage Extensions and Apps: chrome://extensions</li>
+</ul>
+
+
+<!--more-->
+
+
+<h2>Experimental Features/Flash Drives:</h2>
+
+<p>If you've tried to hook a flash drive up to your CR-48, you may have been disappointed to discover that the CR-48 doesn't yet support this.</p>
+
+<p>Going to the address <strong>chrome://flags</strong> opens up a few options for you.  The page clearly states that these are experimental and possibly harmful, but there is an option to enable the "Advanced File System," which includes USB and SD support.</p>
+
+<p>There are a few other features to play with: a built-in media player, remoting, background apps and so forth.  Definitely some good stuff to poke at in there.</p>
+
+<h2>Nicer View of Memory Usage:</h2>
+
+<p>In <a href="http://calamitylane.com/articles/programming/chrome-os-on-the-cr-48-it-has-developer-bits">my last post</a> I showed how "Shift-Esc" pops up a process viewer, which could be used to keep an eye on any misbehaving pages.  This is nice, but the window is tiny, and if you tend to have 40 or 50 tabs open at any given time, it can be burdensome to scroll through the list.</p>
+
+<p>Going to <strong>about:memory</strong> will give you a nice, full-page list of all your process' memory consumption.  This list is not sortable, but if you're looking for a specific process, you can use the Chrome's find-in-page function, since the memory usage displays as a regualar web page.</p>
+
+<h2>Hilarious Pranks:</h2>
+
+<p>Putting <strong>about:crash</strong> in the address bar shows Chrome's "sad folder" crash page.</p>
+
+<p>Something about this makes me want to quietly set about:crash as someone's homepage.  Probably because I am a terrible, terrible person.</p>
+
+<h2>Wi-Fi Troubleshooting:</h2>
+
+<p>Looking at <strong>about:network</strong> will show you a list of all available wi-fi and 3G connections (along with signal strength and other typical wi-fi info), and a list of "remembered" connections.</p>
+
+<p>If you're playing with router settings or testing things, you can set this view to automatically refresh by appending a number of seconds to the address.  For example, pointing your browser to <strong>about:network/3</strong> will cause the page to refresh every 3 seconds.  This is handy if you're looking for a good spot to set up; you can keep an eye on signal strengths as you move around.</p>
+
+<h2>Manage Extensions and Apps:</h2>
+
+<p>You've probably seen this one if you're used to using Chrome on other OSes, but for some reason, on ChromeOS this doesn't show up on the menu.  Going to <strong>chrome://extensions</strong> will show you a list of all your installed extensions and apps.  You can disable or uninstall them from here.</p>
+
+<p>Additionally, you can get to the "Developer Mode" options, which is handy if you're writing a Chrome extension.  You can install a local extension, package it up, or force it to reload.</p>
+
+<p>I used this extensively while writing my <a href="https://chrome.google.com/webstore/detail/mbaomoafgihhkhgmkkoealeopilfdeaf#">Mustard Gas</a> extension.</p>
+
+<p>If you want to get into Chrome extension development, You can start <a href="http://code.google.com/chrome/extensions/getstarted.html">here</a> or begin with Google's <a href="http://code.google.com/chrome/extensions/faq.html">FAQs</a>.  Chrome extensions are just HTML5 and Javascript, so if you've been doing any web development, you already know 90% of what you need to write Chrome extensions.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chrome OS on the CR-48: It Has Developer Bits!]]></title>
+    <link href="http://calamitylane.com/programming/Chrome-OS-on-the-CR-48-It-Has-Developer-Bits/"/>
+    <updated>2010-12-19T00:00:00-06:00</updated>
+    <id>http://calamitylane.com/programming/Chrome-OS-on-the-CR-48-It-Has-Developer-Bits</id>
+    <content type="html"><![CDATA[<p>So for anyone out there who is not already insanely jealous of my good looks and/or impeccable fashion sense, you should know I was one of the recipients of a CR-48 netbook in Google's free giveaway.</p>
+
+<p>A full review is forthcoming (sneak preview: it is awesome), but here I just wanted to share a couple quick things I found that turn ChromeOS from an interesting toy to a usable developer's tool.</p>
+
+<h2>tl;dr</h2>
+
+<ul>
+<li>Process Manager/Task Manager: Shift-Esc</li>
+<li>Shell/SSH Client: Ctrl-Alt-t</li>
+<li>Developer Tools: Ctrl-Shift-i</li>
+</ul>
+
+
+<!--more-->
+
+
+<h2>Process Manager/Task Manager:</h2>
+
+<p>While using Chrome on Ubuntu, I learned that pressing "Shift-Esc" would bring up a Chrome-specific task manager, displaying memory and CPU usage, and making a few other interesting stats available.</p>
+
+<p>Once I got my hands on the CR-48, I quickly started to swamp it with flash, banner ads, and JS-heavy front-ends (GMail, I'm looking at <em>you</em>).  Sure enough, "Shift-Esc" popped up my process list, allowing me to evaluate and kill chunky processes.</p>
+
+<h2>Shell and SSH client:</h2>
+
+<p>For development work, I can skate by with nothing more than a browser and an SSH client.  Since ChromeOS is billed as a browser-only OS, I figured I was out of luck.  I started hunting around for browser-based SSH clients, but most of them require you to either install special software on your server (not really workable if I want to connect on an ad-hoc basis) or trust your SSH logins and/or keys to some web service (which I will consent to shortly after Hades develops a nice thick layer of permafrost).</p>
+
+<p>Fortunately, Google had the foresight to build a shell into ChromeOS.  Press "Ctrl-Alt-t" to pop open a new terminal.  The shell is called "crosh" (short for "Chrome OS Shell", I suspect)  It's not going to replace bash anytime soon; its functionality appears to be limited mostly to diagnostics and network configuration.</p>
+
+<p>It does provide an SSH client, which feels snappy and appears to work well.  Some of the Unicode characters in the shell come across a bit garbled (a side effect of a fancy shell prompt on my dev box), but that's the only complaint I've had so far.</p>
+
+<p>You can open multiple terminals, and you can switch between them (and your open browser windows) with Alt-Tab (or the built in window switcher button).</p>
+
+<h2>Developer Tools: DOM Inspector, Javascript Console, etc.:</h2>
+
+<p>If you've been using Chrome for development, you're probably already familiar with the developer tools (which are rapidly replacing Firebug as my favorite browser tool).  "Ctrl-Shift-i" pops up the tool dock (which can then be shunted out to its own separate window if you need to dig around in there for a while).  Right-clicking a screen element and selecting "Inspect element" still works exactly as expected.  "Ctrl-Shift-i" a second time makes the inspector go away.</p>
+
+<p>These features, combined with the wi-fi and 3g, make the CR-48 a very usable mobile development platform.  It's not going to replace a meaty devbox with a ton of RAM and three monitors, but for some on-the-go coding, I'm surprised and pleased with just how capable it really is.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zombie Songs]]></title>
+    <link href="http://calamitylane.com/programming/Zombie-Songs/"/>
+    <updated>2009-09-22T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/Zombie-Songs</id>
+    <content type="html"><![CDATA[<p>For all those times when you've been thinking to yourself "Man, this would be the perfect situation in which to play a zombie song," I'm glad to say modern independent musicians have stepped up to fill this gap:</p>
+
+<ul>
+<li>Jonathan Coulton, <a href="http://www.youtube.com/watch?v=UQYjZc7gKXc">Re: Your Brains</a></li>
+<li>No More Kings, <a href="http://www.youtube.com/watch?v=I9BRUe4yToQ">Zombie Me</a></li>
+</ul>
+
+
+<p>Further zombie song recommendations are welcome in the comments.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A More Effective Name]]></title>
+    <link href="http://calamitylane.com/programming/A-More-Effective-Name/"/>
+    <updated>2009-08-18T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/A-More-Effective-Name</id>
+    <content type="html"><![CDATA[<p>A quick note:</p>
+
+<p>If you are:</p>
+
+<ul>
+<li>Using Rails</li>
+<li>Using RSpec</li>
+<li>Have just discovered the incredible joy of named scopes</li>
+</ul>
+
+
+<p>...restrain yourself, by any means available (up to and including physical violence) from creating a named scope called "public" or "private."  The reasons for this should be fairly obvious.</p>
+
+<p>Really, whoever ends up cleaning up behind you will appreciate it.</p>
+]]></content>
+  </entry>
+  
+</feed>

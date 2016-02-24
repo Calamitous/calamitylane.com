@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Calamity Lane]]></title>
+  <link href="http://calamitylane.com/atom.xml" rel="self"/>
+  <link href="http://calamitylane.com/"/>
+  <updated>2015-02-26T13:31:42-06:00</updated>
+  <id>http://calamitylane.com/</id>
+  <author>
+    <name><![CDATA[Eric B. Budd]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ctrl-C.club is Live]]></title>
+    <link href="http://calamitylane.com/ctrl-c-dot-club-is-live/"/>
+    <updated>2014-12-29T11:19:00-06:00</updated>
+    <id>http://calamitylane.com/ctrl-c-dot-club-is-live</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve started a new experiment: <a href="http://ctrl-c.club">Ctrl-C.club</a>!  It&#8217;s
+a free, open server with shell accounts available for the asking.</p>
+
+<p>It&#8217;s inspired by <a href="http://tilde.club">Tilde.club</a>.  I signed up when it
+was a new idea, but the server filled up before I could get a slot.</p>
+
+<p>Fortunately, P. F. Hawkins, a tilde-clubber started a
+<a href="http://tilde.club/~pfhawkins/othertildes.html">list</a> of alternate &#8220;Tildes&#8221; for
+those who were unable to get into the original.</p>
+
+<p>Since I had a little extra server space (Thanks, Chad!) I decided to
+spin up Ctrl-C.club.  It&#8217;s been a load of fun so far, and our
+members have already started doing some pretty cool stuff.</p>
+
+<p>We&#8217;ve got an IRC server, loads of programming languages and games, and every
+account has some webspace.</p>
+
+<p>So far we&#8217;ve got <a href="http://ctrl-c.club/who.html">about 30 members</a>, but there is still plenty of room, so
+feel free to <a href="http://goo.gl/forms/oviL1wYSrV">sign up</a>!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Redir is Awesome]]></title>
+    <link href="http://calamitylane.com/programming/redir-is-awesome/"/>
+    <updated>2012-11-19T11:30:00-06:00</updated>
+    <id>http://calamitylane.com/programming/redir-is-awesome</id>
+    <content type="html"><![CDATA[<p>More than anything, I love tiny tools that do one thing, and do it well.  The UNIX philosophy sends me into fits of programmery giggliness for precisely this reason.</p>
+
+<p>Recently I discovered a tiny new tool to add to my toolbox.  I had a test server running on port 3014, and needed to briefly expose it on port 80 (I know, I know, I&#8217;ve just made myself eligible for a righteous noodle-lashing).</p>
+
+<!--more-->
+
+
+<p>My first instinct was to turn to <a href="http://en.wikipedia.org/wiki/Netcat">netcat</a>.  I&#8217;ve tried netcat many times, and I love the <em>idea</em> of netcat, but I&#8217;ve never been able to use it in practice.  Due to the various incomprehensibly incompatible versions, simple tasks frequently requires 15+ minutes of Googling, sifting through old man pages, and idle experimentation.  The idea is great, the execution is utter failure.  Simple things aren&#8217;t easy.</p>
+
+<p>Fortunately, I ran across a little program called <a href="http://linux.die.net/man/1/redir">redir</a>, which does
+exactly what I need (and, tangentially, is nearly impossible to Google).  I installed it on Ubuntu 12.04 using apt-get:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install redir
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is likely to work on any Debian-based system.</p>
+
+<p>Once I had it installed, running it was straightforward:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo redir --lport<span class="o">=</span>80 --cport<span class="o">=</span>3014
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, any (TCP) traffic coming into my box on port 80 is routed to my
+server on port 3014.</p>
+
+<p>Like any other UNIX-y tool, redir comes with two boatloads of extra options,
+flags, and tweaks, but my needs are simple, and handled by the basics of
+the tool.</p>
+
+<p>Small problem, small tool, simple solution.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hey, New Blog Software Again!]]></title>
+    <link href="http://calamitylane.com/hey-new-blog-software-again/"/>
+    <updated>2012-09-11T00:45:00-05:00</updated>
+    <id>http://calamitylane.com/hey-new-blog-software-again</id>
+    <content type="html"><![CDATA[<p>So after many years of hating the blogging software I implemented to
+replace the blogging software I hated before, I&#8217;m implementing new
+software to replace the replacement software.  Which I hate.</p>
+
+<p>Updates to follow.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hidden Chrome Features on CR-48]]></title>
+    <link href="http://calamitylane.com/programming/Hidden-Chrome-Features-on-CR-48/"/>
+    <updated>2010-12-31T00:00:00-06:00</updated>
+    <id>http://calamitylane.com/programming/Hidden-Chrome-Features-on-CR-48</id>
+    <content type="html"><![CDATA[<p>After having playing around with ChromeOS on the CR-48 netbook (<a href="http://calamitylane.com/articles/programming/chrome-os-on-the-cr-48-it-has-developer-bits">which I&#8217;ve blogged about before</a>), I&#8217;ve found a few more interesting tidbits that let you dig deeper into the system.</p>
+
+<br /><br /><br />
+
+
+<h2>tl;dr</h2>
+
+<ul>
+<li>Experimental Features/Flash Drives: chrome://flags</li>
+<li>Nicer View of Memory Usage: about:memory</li>
+<li>Hilarious Pranks: about:crash</li>
+<li>Wi-Fi Troubleshooting: about:network</li>
+<li>Manage Extensions and Apps: chrome://extensions</li>
+</ul>
+
+
+<!--more-->
+
+
+<h2>Experimental Features/Flash Drives:</h2>
+
+<p>If you&#8217;ve tried to hook a flash drive up to your CR-48, you may have been disappointed to discover that the CR-48 doesn&#8217;t yet support this.</p>
+
+<p>Going to the address <strong>chrome://flags</strong> opens up a few options for you.  The page clearly states that these are experimental and possibly harmful, but there is an option to enable the &#8220;Advanced File System,&#8221; which includes USB and SD support.</p>
+
+<p>There are a few other features to play with: a built-in media player, remoting, background apps and so forth.  Definitely some good stuff to poke at in there.</p>
+
+<h2>Nicer View of Memory Usage:</h2>
+
+<p>In <a href="http://calamitylane.com/articles/programming/chrome-os-on-the-cr-48-it-has-developer-bits">my last post</a> I showed how &#8220;Shift-Esc&#8221; pops up a process viewer, which could be used to keep an eye on any misbehaving pages.  This is nice, but the window is tiny, and if you tend to have 40 or 50 tabs open at any given time, it can be burdensome to scroll through the list.</p>
+
+<p>Going to <strong>about:memory</strong> will give you a nice, full-page list of all your process&#8217; memory consumption.  This list is not sortable, but if you&#8217;re looking for a specific process, you can use the Chrome&#8217;s find-in-page function, since the memory usage displays as a regualar web page.</p>
+
+<h2>Hilarious Pranks:</h2>
+
+<p>Putting <strong>about:crash</strong> in the address bar shows Chrome&#8217;s &#8220;sad folder&#8221; crash page.</p>
+
+<p>Something about this makes me want to quietly set about:crash as someone&#8217;s homepage.  Probably because I am a terrible, terrible person.</p>
+
+<h2>Wi-Fi Troubleshooting:</h2>
+
+<p>Looking at <strong>about:network</strong> will show you a list of all available wi-fi and 3G connections (along with signal strength and other typical wi-fi info), and a list of &#8220;remembered&#8221; connections.</p>
+
+<p>If you&#8217;re playing with router settings or testing things, you can set this view to automatically refresh by appending a number of seconds to the address.  For example, pointing your browser to <strong>about:network/3</strong> will cause the page to refresh every 3 seconds.  This is handy if you&#8217;re looking for a good spot to set up; you can keep an eye on signal strengths as you move around.</p>
+
+<h2>Manage Extensions and Apps:</h2>
+
+<p>You&#8217;ve probably seen this one if you&#8217;re used to using Chrome on other OSes, but for some reason, on ChromeOS this doesn&#8217;t show up on the menu.  Going to <strong>chrome://extensions</strong> will show you a list of all your installed extensions and apps.  You can disable or uninstall them from here.</p>
+
+<p>Additionally, you can get to the &#8220;Developer Mode&#8221; options, which is handy if you&#8217;re writing a Chrome extension.  You can install a local extension, package it up, or force it to reload.</p>
+
+<p>I used this extensively while writing my <a href="https://chrome.google.com/webstore/detail/mbaomoafgihhkhgmkkoealeopilfdeaf#">Mustard Gas</a> extension.</p>
+
+<p>If you want to get into Chrome extension development, You can start <a href="http://code.google.com/chrome/extensions/getstarted.html">here</a> or begin with Google&#8217;s <a href="http://code.google.com/chrome/extensions/faq.html">FAQs</a>.  Chrome extensions are just HTML5 and Javascript, so if you&#8217;ve been doing any web development, you already know 90% of what you need to write Chrome extensions.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chrome OS on the CR-48: It Has Developer Bits!]]></title>
+    <link href="http://calamitylane.com/programming/Chrome-OS-on-the-CR-48-It-Has-Developer-Bits/"/>
+    <updated>2010-12-19T00:00:00-06:00</updated>
+    <id>http://calamitylane.com/programming/Chrome-OS-on-the-CR-48-It-Has-Developer-Bits</id>
+    <content type="html"><![CDATA[<p>So for anyone out there who is not already insanely jealous of my good looks and/or impeccable fashion sense, you should know I was one of the recipients of a CR-48 netbook in Google&#8217;s free giveaway.</p>
+
+<p>A full review is forthcoming (sneak preview: it is awesome), but here I just wanted to share a couple quick things I found that turn ChromeOS from an interesting toy to a usable developer&#8217;s tool.</p>
+
+<h2>tl;dr</h2>
+
+<ul>
+<li>Process Manager/Task Manager: Shift-Esc</li>
+<li>Shell/SSH Client: Ctrl-Alt-t</li>
+<li>Developer Tools: Ctrl-Shift-i</li>
+</ul>
+
+
+<!--more-->
+
+
+<h2>Process Manager/Task Manager:</h2>
+
+<p>While using Chrome on Ubuntu, I learned that pressing &#8220;Shift-Esc&#8221; would bring up a Chrome-specific task manager, displaying memory and CPU usage, and making a few other interesting stats available.</p>
+
+<p>Once I got my hands on the CR-48, I quickly started to swamp it with flash, banner ads, and JS-heavy front-ends (GMail, I&#8217;m looking at <em>you</em>).  Sure enough, &#8220;Shift-Esc&#8221; popped up my process list, allowing me to evaluate and kill chunky processes.</p>
+
+<h2>Shell and SSH client:</h2>
+
+<p>For development work, I can skate by with nothing more than a browser and an SSH client.  Since ChromeOS is billed as a browser-only OS, I figured I was out of luck.  I started hunting around for browser-based SSH clients, but most of them require you to either install special software on your server (not really workable if I want to connect on an ad-hoc basis) or trust your SSH logins and/or keys to some web service (which I will consent to shortly after Hades develops a nice thick layer of permafrost).</p>
+
+<p>Fortunately, Google had the foresight to build a shell into ChromeOS.  Press &#8220;Ctrl-Alt-t&#8221; to pop open a new terminal.  The shell is called &#8220;crosh&#8221; (short for &#8220;Chrome OS Shell&#8221;, I suspect)  It&#8217;s not going to replace bash anytime soon; its functionality appears to be limited mostly to diagnostics and network configuration.</p>
+
+<p>It does provide an SSH client, which feels snappy and appears to work well.  Some of the Unicode characters in the shell come across a bit garbled (a side effect of a fancy shell prompt on my dev box), but that&#8217;s the only complaint I&#8217;ve had so far.</p>
+
+<p>You can open multiple terminals, and you can switch between them (and your open browser windows) with Alt-Tab (or the built in window switcher button).</p>
+
+<h2>Developer Tools: DOM Inspector, Javascript Console, etc.:</h2>
+
+<p>If you&#8217;ve been using Chrome for development, you&#8217;re probably already familiar with the developer tools (which are rapidly replacing Firebug as my favorite browser tool).  &#8220;Ctrl-Shift-i&#8221; pops up the tool dock (which can then be shunted out to its own separate window if you need to dig around in there for a while).  Right-clicking a screen element and selecting &#8220;Inspect element&#8221; still works exactly as expected.  &#8220;Ctrl-Shift-i&#8221; a second time makes the inspector go away.</p>
+
+<p>These features, combined with the wi-fi and 3g, make the CR-48 a very usable mobile development platform.  It&#8217;s not going to replace a meaty devbox with a ton of RAM and three monitors, but for some on-the-go coding, I&#8217;m surprised and pleased with just how capable it really is.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Name The Next Budd]]></title>
+    <link href="http://calamitylane.com/family/Name-The-Next-Budd/"/>
+    <updated>2010-11-21T00:00:00-06:00</updated>
+    <id>http://calamitylane.com/family/Name-The-Next-Budd</id>
+    <content type="html"><![CDATA[<p>It&#8217;s that time again&#8230;</p>
+
+<p>Take the Survey:</p>
+
+<p><a href="http://namethebudd.wufoo.com/forms/m7x3p9/" title="Name That Budd II">Name that Budd!</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zombie Songs]]></title>
+    <link href="http://calamitylane.com/programming/Zombie-Songs/"/>
+    <updated>2009-09-22T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/Zombie-Songs</id>
+    <content type="html"><![CDATA[<p>For all those times when you&#8217;ve been thinking to yourself &#8220;Man, this would be the perfect situation in which to play a zombie song,&#8221; I&#8217;m glad to say modern independent musicians have stepped up to fill this gap:</p>
+
+<ul>
+<li>Jonathan Coulton, <a href="http://www.youtube.com/watch?v=UQYjZc7gKXc">Re: Your Brains</a></li>
+<li>No More Kings, <a href="http://www.youtube.com/watch?v=I9BRUe4yToQ">Zombie Me</a></li>
+</ul>
+
+
+<p>Further zombie song recommendations are welcome in the comments.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A More Effective Name]]></title>
+    <link href="http://calamitylane.com/programming/A-More-Effective-Name/"/>
+    <updated>2009-08-18T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/A-More-Effective-Name</id>
+    <content type="html"><![CDATA[<p>A quick note:</p>
+
+<p>If you are:</p>
+
+<ul>
+<li>Using Rails</li>
+<li>Using RSpec</li>
+<li>Have just discovered the incredible joy of named scopes</li>
+</ul>
+
+
+<p>&#8230;restrain yourself, by any means available (up to and including physical violence) from creating a named scope called &#8220;public&#8221; or &#8220;private.&#8221;  The reasons for this should be fairly obvious.</p>
+
+<p>Really, whoever ends up cleaning up behind you will appreciate it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Annihilate Ubuntu's Annoying System Beep]]></title>
+    <link href="http://calamitylane.com/programming/Annihilate-Ubuntu-s-Annoying-System-Beep/"/>
+    <updated>2009-06-09T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/Annihilate-Ubuntu-s-Annoying-System-Beep</id>
+    <content type="html"><![CDATA[<p>A quickie to remind myself next time I build an Ubuntu box, and am being slowly driven batty by a tiny, tinny obsolete PC speaker made of hate:</p>
+
+<pre><code>sudo gvim /etc/modprobe.d/blacklist
+</code></pre>
+
+<p>(or /etc/modprobe.d/blacklist.conf, for Ubuntu 9.04)
+&#8230;and add the following line:</p>
+
+<pre><code>blacklist pcspkr
+</code></pre>
+
+<p>From the command line, kill it in the current session:</p>
+
+<pre><code>sudo rmmod pcspkr
+</code></pre>
+
+<p>No more waking the baby with late-night hacking sessions!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Select Tag Funkiness With Merb]]></title>
+    <link href="http://calamitylane.com/programming/Select-Tag-Funkiness-With-Merb/"/>
+    <updated>2009-01-18T00:00:00-06:00</updated>
+    <id>http://calamitylane.com/programming/Select-Tag-Funkiness-With-Merb</id>
+    <content type="html"><![CDATA[<p>In my ongoing travails with Merb &amp; Friends, I&#8217;ve run across a few behaviors with the select() form helper method.  Since there&#8217;s currently a dearth of examples, I thought I&#8217;d document them for myself and future googlers.</p>
+
+<!--more-->
+
+
+<p>If you&#8217;re having problems getting select() to work in Merb, bear the following in mind:</p>
+
+<p>If you type the following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">select</span> <span class="ss">:widget_id</span><span class="p">,</span> <span class="ss">:collection</span> <span class="o">=&gt;</span> <span class="no">Widget</span><span class="o">.</span><span class="n">all</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You may get the error:</p>
+
+<pre><code>&gt;&gt; undefined method 'first' in &lt;Widget:0x7fae15562fc8&gt;
+</code></pre>
+
+<p>(you may also get &#8220;undefined method &#8216;last&#8217;&#8221;)</p>
+
+<p>select() expects two options to be passed in: :value_method and :text_method.  If you provide neither, Merb will assume that your collection is an array, and will default them to the &#8216;first&#8217; and &#8216;last&#8217; methods respectively.  Add your field names or methods explicitly to make select() happy:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">select</span> <span class="ss">:widget_id</span><span class="p">,</span> <span class="ss">:collection</span> <span class="o">=&gt;</span> <span class="no">Widget</span><span class="o">.</span><span class="n">all</span><span class="p">,</span>
+</span><span class='line'>       <span class="ss">:value_method</span> <span class="o">=&gt;</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:text_method</span> <span class="o">=&gt;</span> <span class="ss">:name</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Additionally, there&#8217;s a strange behavior, in which the :selected option appears to be ignored&#8211; when you pull your form back up after a save, the select box will be back on the default value:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">select</span> <span class="ss">:widget_id</span><span class="p">,</span> <span class="ss">:collection</span> <span class="o">=&gt;</span> <span class="no">Widget</span><span class="o">.</span><span class="n">all</span><span class="p">,</span><span class="ss">:value_method</span> <span class="o">=&gt;</span> <span class="ss">:id</span><span class="p">,</span>
+</span><span class='line'>       <span class="ss">:text_method</span> <span class="o">=&gt;</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:selected</span> <span class="o">=&gt;</span> <span class="vi">@whongo</span><span class="o">.</span><span class="n">widget_id</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The problem here is that Merb expects the :selected option to be a string.  Cast your selected value to a string and all will be well:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">select</span> <span class="ss">:widget_id</span><span class="p">,</span> <span class="ss">:collection</span> <span class="o">=&gt;</span> <span class="no">Widget</span><span class="o">.</span><span class="n">all</span><span class="p">,</span><span class="ss">:value_method</span> <span class="o">=&gt;</span> <span class="ss">:id</span><span class="p">,</span>
+</span><span class='line'>       <span class="ss">:text_method</span> <span class="o">=&gt;</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:selected</span> <span class="o">=&gt;</span> <span class="vi">@whongo</span><span class="o">.</span><span class="n">widget_id</span><span class="o">.</span><span class="n">to_s</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Rails Developer Spends One Week With Merb (and HAML and JQuery and DataMapper)]]></title>
+    <link href="http://calamitylane.com/programming/A-Rails-Developer-Spends-One-Week-With-Merb-and-HAML-and-JQuery-and-DataMapper/"/>
+    <updated>2009-01-08T00:00:00-06:00</updated>
+    <id>http://calamitylane.com/programming/A-Rails-Developer-Spends-One-Week-With-Merb-and-HAML-and-JQuery-and-DataMapper</id>
+    <content type="html"><![CDATA[<p>Developers often talk about some hot new technology they plan on spending time with, but very rarely do they ever get around to it.  I&#8217;m ordinarily in the same boat, but last week I had a new personal project crop up for a simple web application (5-6 models) which was an ideal candidate for testing out a slew of new tech that I&#8217;ve been meaning to get around to.</p>
+
+<p><a href="http://www.merbivore.com/">Merb</a>, an erstwhile competitor to Rails, has been making a big splash lately.  I decided to step out of my comfort zone of Rails/Acti* and into the wild and woolly world of young, cutting-edge frameworks.  Since I&#8217;m undergoing the pain of learning a new framework, I figured I&#8217;d go whole hog and use <a href="http://haml.hamptoncatlin.com">Haml</a>, <a href="http://jquery.com/">jQuery</a>, and <a href="http://datamapper.org/doku.php">DataMapper</a>, as well.</p>
+
+<p>Before last week, I&#8217;d never done much more than spin through the initial tutorials for any of these tools.  That being the case, I can&#8217;t really speak to performance, deployment, or any of half-a-hundred other critical issues to consider when selecting a framework&#8211; this is strictly a shallow, first-impressions review.</p>
+
+<p>I welcome comments and corrections to my observations, and suggestions for easing some of the new-developer pain.</p>
+
+<!--more-->
+
+
+<h1><a href="http://www.merbivore.com/">Merb</a></h1>
+
+<p>Having only recently reached 1.0, Merb&#8217;s still a bit rough around the edges.  Documentation and tutorials are sparse, and there are a few API decisions that feel odd, but all that&#8217;s to be expected.</p>
+
+<p>Fortunately, a Rails developer will have no trouble whatsoever translating their experience wholesale over to Merb.  Everything feels familiar and works as expected.  Even some Rails functions which are not documented anywhere in Merb (such as &#8216;cycle&#8217;) are present and work as expected.</p>
+
+<p>Overall, using Merb is a reasonably pain-free experience and follows the <abbr title="Principle of Least Surprise">POLS</abbr>, with a few minor exceptions.</p>
+
+<p>Most surprising so far is that there is no (evident) standardized way to handle resources with uncountable names.  Merb eschews Rails&#8217; &#8220;-Controller&#8221; addendum for class names, separating models and controllers strictly by pluralization.  You&#8217;ll run into naming collisions with uncountable class names (&#8220;Series&#8221;, for example).  This is not difficult to fix, but it&#8217;s a surprising oversight for someone used to the smooth Rails development process.</p>
+
+<p>The app I&#8217;m building will only have two or three users, so performance is not a major concern at this point (I may even leave the database in sqlite3).  I <em>will</em> say that Merb starts up like a screaming banshee compared to Rails, which is good, since you&#8217;ll be restarting a <em>lot</em> during development.</p>
+
+<p>Merb automatically reloads when you modify a model or controller file, but not when you modify a view file.  I know there&#8217;s a perfectly rational reason behind this, but it can be frustrating, since the view templates are something to I do a lot of &#8220;minor tweak->restart->check&#8221; to.  Additionally, I tend to do a lot of exploratory testing of my model code in the console, and the automatic restarts don&#8217;t save me much time, but they do wipe out my command history, so I need to keep my cut-n-paste skills sharp or else retype a lot of testing code.</p>
+
+<p>A last nitpick is that the community doesn&#8217;t seem quite as friendly or responsive as Rails&#8217;.  It&#8217;s one of those somewhat understandable but still frustrating experiences&#8211; yes, it&#8217;s open-source, I can patch-and-submit, etc., but when I&#8217;m having a problem <em>right now,</em> I&#8217;m not interested in hacking the framework&#8211; <em>especially</em> if it&#8217;s likely that only my ignorance causing the problem.  I generally try very hard to work things out on my own before making a ticket or jumping into IRC, precisely because I know how difficult and ungratifying it can be to keep up with support requests.  The responses, especially on the tickets, do not always seem carefully thought out.</p>
+
+<p>That said, there is much to love about Merb.  A few killer (for me) features create a much more pleasant development experience than Rails.  Some that stood out:</p>
+
+<ul>
+<li>RSpec is the default testing framework.  This is long overdue in Rails&#8211; not having to jump through the install-gem-and-plugin-and-wait-what-version-of-rails hoops just to use RSpec is a huge burden gone.</li>
+<li>Using a different ORM or view templating system requires changing only a single line of code (well, that and installing the 49 gems that get it running).  This is much nicer then Rails&#8217; heavy and largely immovable dependencies.</li>
+<li>Specs are broken out into only two areas: models and requests.  The use of &#8216;requests&#8217; eliminates the often-fuzzy line between controller and fragile view specs.</li>
+</ul>
+
+
+<p>Overall, Merb feels much cleaner and less crufty than Rails.</p>
+
+<p>Shortly after I started working with Merb, the merge with Rails was announced.  I&#8217;m ambivalent about it at the moment, but hopefully the Merb side will pick up the stability and smoothness of the Rails process (and some of the Rails community), and Rails can pick up many of Merb&#8217;s new concepts.</p>
+
+<h1><a href="http://haml.hamptoncatlin.com/">Haml</a></h1>
+
+<p>I&#8217;ve never been comfortable with ERb templates.  They smack of the raw string replacement philosophy of classic ASP.  I&#8217;ve long suspected that there must be a better way to handle view templating, but had no real idea how it could be accomplished.  Haml is one of the first systems I&#8217;ve seen to take a reasonable stab at this problem.</p>
+
+<p>Haml was a solid win across the board.  It&#8217;s stable, works exactly as advertised, and beats the pants off of ERb.  Documentation is complete and effective.  I can&#8217;t speak about the support community, since I didn&#8217;t have a single question that wasn&#8217;t answered almost immediately by the documentation.</p>
+
+<p>Really, I don&#8217;t know what better to say about a piece of software than &#8220;it worked well, cleaned up my code, and saved me a bunch of headaches.&#8221;</p>
+
+<p>It does take a little while to get your head into, but once you&#8217;re there it&#8217;s very intuitive and flows naturally if you&#8217;re familiar with basic css selectors.  It&#8217;s whitespace-sensitive (like Python), which eliminates a lot of the nesting you end up doing in ERb, and keeps your view templates looking nice.</p>
+
+<p>Some folks have an inexplicable aversion to whitespace-sensitivity: if you&#8217;re one of them, then you will definitely not like Haml.</p>
+
+<p>Nonetheless, I think that nearly anyone who follows the advice on Haml&#8217;s homepage and takes twenty minutes to convert one of their existing ERb templates (the uglier the better) will be a convert.</p>
+
+<p>For any future projects where it&#8217;s possible, I&#8217;ll be using Haml.</p>
+
+<h1><a href="http://jquery.com/">jQuery</a></h1>
+
+<p>I&#8217;ll admit that I&#8217;ve openly derided the concept of &#8220;unobtrusive javascript,&#8221; which is a core concept of the jQuery library.  This is one case where I was utterly, embarrassingly, and happily wrong.</p>
+
+<p>I don&#8217;t have much client-side AJAXy fanciness going on, but having all the javascript code out of my way made development much easier, and the maintenance is clearly going to be less of a burden.</p>
+
+<p>jQuery&#8217;s DOM handling is very clear, and there&#8217;s a surprising amount of flexibility and power easily available once you start digging into it.</p>
+
+<p>I still don&#8217;t <em>like</em> javascript, but jQuery makes it much, much more tolerable.</p>
+
+<h1><a href="http://www.datamapper.org/">DataMapper</a></h1>
+
+<p>DataMapper was the biggest disappointment of the lot.  I&#8217;d seen a presentation and played with it a bit.  I was very excited about it, because there are some very good ideas in DataMapper.  Unfortunately, the actual implementation is a bit of a train wreck.</p>
+
+<p>The last time I used it, nearly a year ago, I was trying to tie it to CouchDB.  At the time, I wrote off my difficulties as 1) my limited understanding of DataMapper, and 2) trying to shoehorn a document database into a relational ORM with an incomplete library.</p>
+
+<p>I&#8217;m sorry to report that the &#8220;correct&#8221; DataMapper experience is not significantly better.  Documentation and examples are painfully sparse, and several pieces simply don&#8217;t work well.  Validation could not be made to function consistently, and associations are fraught with guesswork, when they work at all.</p>
+
+<p>At one point, after four hours of frustration, I turned to IRC, where an admittedly helpful and pleasant person informed me that many-to-many associations in DataMapper are broken for a number of edge cases, and probably shouldn&#8217;t be used.  I indicated, in the nicest way I could manage, that this should probably be displayed somewhere prominent on DataMapper&#8217;s website.</p>
+
+<p>The API is still in flux, so the few tutorials and examples that Google finds are likely as not to be out of date.  It&#8217;s not hard to work around many of the missing or broken features, but the resultant code is slow to write, ugly to look at, and feature-incomplete.</p>
+
+<p>DataMapper was so sharply disappointing precisely because it shows so much promise.  Much of the silliness of ActiveRecord is leapfrogged entirely&#8211; things like counts and association loading are handled in a more rational way, slimming the API and boosting performance.</p>
+
+<p>My understanding is that they&#8217;re in the midst of an extended rewrite, and there are parts of the API (especially surrounding the problematic associations) that are under review for changes.  Hopefully they will be able to turn the quality around; the 0.9.8 version number belies the incompleteness of the library.</p>
+
+<h1><a href="http://rspec.info/">RSpec Bonus!</a> 5% more verbiage FREE</h1>
+
+<p>RSpec is a beautiful thing.  If you aren&#8217;t you using it already, you are missing out on faster, more effective testing.  As testing frameworks go, RSpec is one of the best.</p>
+
+<p>Others have stated more eloquently why <strong>You.should be_using_rspec</strong></p>
+
+<h1>Overall</h1>
+
+<p>I hope I don&#8217;t give the impression here that working with Merb and cohorts is at all unpleasant&#8211; quite the opposite.  It&#8217;s far easier to burn up the wordcount criticizing flaws than it is saying &#8220;Works great,&#8221; and make no mistake that nearly everything works great.  Despite having not yet spent much time with these tools, I already have a comfortable workflow, and I certainly wouldn&#8217;t be continuing development if the benefits these tools provide didn&#8217;t outweigh the nitpicks I&#8217;ve been running into.</p>
+
+<p>Merb is not the revolutionary leap that Rails was, but it&#8217;s a clear evolutionary step.  Despite some roughness in a few places, it&#8217;s a great system to work with, and I look forward to good things coming out of Merb&#8217;s and Rails&#8217; merge.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[If You Like Lyrical Code...]]></title>
+    <link href="http://calamitylane.com/programming/If-You-Like-Lyrical-Code/"/>
+    <updated>2008-12-07T00:00:00-06:00</updated>
+    <id>http://calamitylane.com/programming/If-You-Like-Lyrical-Code</id>
+    <content type="html"><![CDATA[<p>Osake reminded me this morning that I hadn&#8217;t posted this one up yet&#8230;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nb">self</span> <span class="o">=~</span> <span class="sr">/pina coladas/</span> <span class="o">&amp;&amp;</span> <span class="no">Rain</span><span class="o">.</span><span class="n">caught</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">yoga</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">self</span><span class="o">.</span><span class="n">brain</span> <span class="o">==</span> <span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">Personals</span><span class="o">.</span><span class="n">answer</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">relationship</span> <span class="o">=</span> <span class="ss">:train_wreck</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<p>Escape (The Pina Colada Song) &#8211; Rupert Holmes</p>
+
+<pre><code>If you like Pina Coladas, and getting caught in the rain.
+If you're not into yoga, if you have half a brain...
+....
+</code></pre>
+
+<p>I&#8217;d never actually listened to the lyrics very carefully before this, but they&#8217;re pretty horrible.  Effectively, both parties in a relationship decide to cheat on each other via the personals page, and end up contacting each other&#8230; and discovering that they like the same things.</p>
+
+<p>Go ahead and read through the lyrics sometime, they&#8217;re an excellent example of a relationship in which everything has gone terribly awry&#8211; emotional distance, complete failure of communication, adultery, and pina coladas (which frankly aren&#8217;t all that great).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bank of America: Bad, Bad, Bad]]></title>
+    <link href="http://calamitylane.com/business/Bank-of-America-Bad-Bad-Bad/"/>
+    <updated>2008-11-24T00:00:00-06:00</updated>
+    <id>http://calamitylane.com/business/Bank-of-America-Bad-Bad-Bad</id>
+    <content type="html"><![CDATA[<p>So, yeah, this is going to be a little ranty; feel free to skip it if you like Bank of America, or just don&#8217;t feel like hearing a windy blowhard spouting bile.</p>
+
+<p>I&#8217;m not going into the many reasons I decided to close out my Bank of America account, just the representative experience of actually doing it.</p>
+
+<!--more-->
+
+
+<p>So I rolled in, got to a teller, and told her I wanted to close my account.  She directed me to the back of the bank, since tellers can&#8217;t close accounts.</p>
+
+<p>Okay, fine.  I&#8217;m not going to get into asking why I can&#8217;t just close my account through their horrible, horrible website, but fine.</p>
+
+<p>Right after I&#8217;d emptied the account in preparation for closing it, they hit me <em>the very next day</em> with a $10 &#8220;below acceptable account balance&#8221; fee.  And, of couse, a $25 overdraft fee, since there was a zero balance.</p>
+
+<p>Okay, fine.  I&#8217;m leaving, it&#8217;s your last chance to nickel-and-dime me, I understand.</p>
+
+<p>The account-closing lady offered to take the fee off, but their fee-refunding computer system was down.  And there were people she could call to fix it, but they weren&#8217;t going to be in until Monday.  I could come in Monday, and &#8220;maybe&#8221; she could get the fee taken off.  No thanks, I&#8217;ve been on that merry-go-round. (&#8220;Maybe we could take off the balance charge, but you&#8217;ll need to come in next Wednesday to take off the overdraft.&#8221; &#8220;Maybe we could take $5 dollars off the overdraft, but you&#8217;ll need to call our service in Turbekistan, which only operates every other full moon.&#8221; &#8220;Oops, this other fee got put on your account.  Maybe you could&#8230;&#8221;) Bleh.  NO THANKS.  I&#8217;ll just take my lumps and pay the stupid $35 &#8220;Get Out of Our Bank&#8221; fee.</p>
+
+<p>So she redirects me back to the tellers, since she can&#8217;t deal with money.</p>
+
+<p>Okay, fine, FINE.  I get back in line.</p>
+
+<p>Once I get hold of another teller, I hand her my credit card.  She starts talking about a &#8220;cash advance&#8221; and whoa! I stomp the brakes, because my CC charges painfully punitive cash advance fees.  Apparently, Holy Cow, THEY ARE NOT ABLE TO RUN A CREDIT CARD AT BANK OF AMERICA.</p>
+
+<p>Seriously?</p>
+
+<p>So I offer her a debit card.  She gets that look, like &#8220;Oh no this guy is about to flip out.&#8221;  Apparently, I have to go to the ATM machine outside to withdraw cash to deposit, since THEY CAN&#8217;T DO DEBIT CARDS EITHER.  Although, she says, some customers have reported having &#8220;trouble&#8221; with the ATM machine.</p>
+
+<p>No kidding.  Trouble, you say?  Shock!</p>
+
+<p>Okay, fine.  Hit me with the cash advance fee, so I can finally close this stupid account and LEAVE.  Sure, sure.</p>
+
+<p>She proceeds to walk over to a CREDIT CARD IMPRINTER.  You know, the old machines they stick your card into with a carbon slip, and slide the handle over, going &#8220;SHONK-SHONK?&#8221;  Seriously, she used one.  I don&#8217;t think I&#8217;ve seen one of those since well before I was old enough to have a credit card.  I thought they only had them in museums for failed technology.  But I have physical evidence, a carbon-copy sales slip, which she then ran through the scanner hooked to her computer.</p>
+
+<p>Honestly?  Take that 700 billion dollar bailout and buy yourselves a credit card machine.  You can get them on Ebay pretty cheap, I hear.</p>
+
+<p>Then, of course, I get to take my fancy carbon slip back to the account closing lady.</p>
+
+<p>Digression: Have you ever been to a renaissance festival?  They&#8217;re a lot of fun: people dress in armor and medieval clothing and pretend to be lords and ladies and knights and so forth.  You can buy period clothing, big turkey legs to gnaw on, swords and axes, etc. from vendors scattered throughout.</p>
+
+<p>Why do I bring this up?  THIS FAT HAIRY MAN IN CHAINMAIL, WHOSE STOREFRONT IS EFFECTIVELY A FEW PLANKS ON A MUDDY PATCH IN THE MIDDLE OF A FIELD, CAN ACCEPT ANY DEBIT AND/OR CREDIT CARD IN MY WALLET.  PERHAPS BANK OF AMERICA SHOULD CONTACT THIS MAN TO LEARN THE SECRETS OF HIS TECHNOLOGICAL MARVEL.</p>
+
+<p>So maybe my account is closed, maybe not.  I&#8217;d give even odds that something else was &#8220;down&#8221; and I&#8217;ll need to come back in for something.  Because I can clean every last dollar and dime from my account over the internet, but actually <em>closing</em> the thing is serious enough to require my physical presence on bank premises.</p>
+
+<p>Bad bank.  Bad naughty.  Bad.</p>
+
+<p>UPDATE: While I understand that a good rant can be a lot of fun, I&#8217;d respectfully ask that you keep comments relatively clean&#8211; if it&#8217;s not something you&#8217;d say to your boss, or your mother, or shout at random passersby on a street corner, please don&#8217;t put it in a comment.  Thanks!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code Lyrical Umpteen-something...]]></title>
+    <link href="http://calamitylane.com/programming/Code-Lyrical-Umpteen-something/"/>
+    <updated>2008-10-30T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/Code-Lyrical-Umpteen-something</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MaryMoon</span> <span class="o">&lt;</span> <span class="no">Vegetarian</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'>    <span class="vi">@ttl</span> <span class="o">=</span> <span class="mi">2_524_554_080</span>
+</span><span class='line'>    <span class="n">doowop</span>
+</span><span class='line'>    <span class="vi">@loves</span> <span class="o">=</span> <span class="no">Miso</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>    <span class="vi">@alone</span><span class="o">.</span><span class="n">ambivalence</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="n">type</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">doowop</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="no">ArgumentError</span> <span class="k">if</span> <span class="n">type</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Meat</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">sho_like</span><span class="p">()</span> <span class="k">if</span> <span class="n">type</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Bone</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">doowop</span>
+</span><span class='line'>    <span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="s1">&#39;Mary Moon&#39;</span> <span class="p">}</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As always, jump for answers!</p>
+
+<!--more-->
+
+
+<p>New Age Girl &#8211; Deadeye Dick</p>
+
+<pre><code>Mary Moon, she's a vegetarian
+(Mary Moon, Mary Moon, Mary Moon)
+Mary Moon will outlive all the septaugenarians
+(Mary Moon, Mary Moon, Mary Moon)
+Oh she loves me so, she hates to be alone
+She don't eat meat but she sure like the bone
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mysterious, Incomprehensible Capistrano Errors]]></title>
+    <link href="http://calamitylane.com/programming/Mysterious-Incomprehensible-Capistrano-Errors/"/>
+    <updated>2008-10-29T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/Mysterious-Incomprehensible-Capistrano-Errors</id>
+    <content type="html"><![CDATA[<p>So yesterday a co-worker and I were fighting fires in our Capistrano deploy scripts.  We&#8217;d been updating a crufty monstrosity of a cap script, and were getting  an error along the lines of:</p>
+
+<pre><code>uninitialized constant #&lt;Class:0x7f3230382cf0&gt;::Capistrano::Deploy
+</code></pre>
+
+<p></code></pre></div>
+After half a day of rolling back every single change we&#8217;d made to the scripts in the last week, we discovered a small junk file with some test code we&#8217;d stuck in the &#8216;lib/recipes&#8217; directory.  It was getting included even though it was not &#8216;require&#8217;d anywhere.</p>
+
+<p>PROTIP: CAPISTRANO INCLUDES EVERYTHING IN THE &#8216;lib/recipes&#8217; DIRECTORY BECAUSE IT HATES YOU.</p>
+
+
+<p>Also, it saves typing maybe three lines of code.</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Berceuse Code Lyrical]]></title>
+    <link href="http://calamitylane.com/programming/Berceuse-Code-Lyrical/"/>
+    <updated>2008-10-17T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/Berceuse-Code-Lyrical</id>
+    <content type="html"><![CDATA[<p>Somewhat in the same vein as our last one:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">Son</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">pray</span><span class="p">(</span><span class="n">beneficiaries</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">unless</span> <span class="n">beneficiaries</span><span class="o">.</span><span class="n">uniq</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="no">EVERYONE</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>      <span class="k">raise</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">,</span> <span class="s2">&quot;Prayers should include everyone!&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="vi">@prayed</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">tuck</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@prayed</span>
+</span><span class='line'>      <span class="n">internal_temperature</span> <span class="o">=</span> <span class="mi">99</span><span class="o">.</span><span class="mi">9</span>
+</span><span class='line'>      <span class="vi">@sin_free</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">sleeping</span>
+</span><span class='line'>    <span class="k">unless</span> <span class="vi">@eyes_open</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="vi">@pillow</span><span class="o">.</span><span class="n">gripped?</span>
+</span><span class='line'>      <span class="vi">@anthropomrphic_personification</span> <span class="o">=</span> <span class="no">Sandman</span><span class="o">.</span><span class="n">enter</span>
+</span><span class='line'>      <span class="vi">@sin_free</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">Sandman</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">enter</span>
+</span><span class='line'>    <span class="no">Light</span><span class="o">.</span><span class="n">exit</span>
+</span><span class='line'>    <span class="no">Night</span><span class="o">.</span><span class="n">enter</span>
+</span><span class='line'>    <span class="no">Hand</span><span class="o">.</span><span class="n">take</span>
+</span><span class='line'>    <span class="n">never_never_land</span><span class="p">(</span><span class="ss">:off</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<p>Enter the Sandman by Metallica</p>
+
+<pre><code>Say your prayers little one
+Don't forget, my son
+To include everyone
+
+Tuck you in, warm within
+Keep you free from sin
+Till the sandman he comes
+
+Sleep with one eye open
+Gripping your pillow tight
+
+Exit light
+Enter night
+Take my hand
+Off to never never land
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Brainmallows]]></title>
+    <link href="http://calamitylane.com/programming/Brainmallows/"/>
+    <updated>2008-10-14T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/Brainmallows</id>
+    <content type="html"><![CDATA[<p>I love these things.  They&#8217;re all filler and no meat, like marshmallow sandwiches.  Which are also delicious.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Jungle</span>
+</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:fun</span><span class="p">,</span> <span class="ss">:games</span><span class="p">,</span> <span class="ss">:everything_you_want</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">welcome</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">(</span><span class="vc">@@names</span> <span class="o">||=</span> <span class="o">[]</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">new_user</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">needs_query</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="s2">&quot;Whatever: </span><span class="si">#{</span><span class="n">needs_query</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">receive_money</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># TODO: this may be returning an unwanted value</span>
+</span><span class='line'>    <span class="c1"># check with Jim in accounting</span>
+</span><span class='line'>    <span class="k">return</span> <span class="ss">:your_disease</span> <span class="k">if</span> <span class="n">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">.</span><span class="mi">0</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Jungle</span><span class="o">.</span><span class="n">welcome</span><span class="p">(</span><span class="n">honey</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Answer after the jump.</p>
+
+<!--more-->
+
+
+<p>Welcome to the Jungle &#8211; Guns &#8216;n&#8217; Roses</p>
+
+<pre><code>Welcome to the jungle
+We got fun 'n' games
+We got everything you want
+Honey we know the names
+We are the people that can find
+Whatever you may need
+If you got the money honey
+We got your disease
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Your Buddhism is Indistinguishable From Its Surroundings]]></title>
+    <link href="http://calamitylane.com/programming/Your-Buddhism-is-Indistinguishable-From-Its-Surroundings/"/>
+    <updated>2008-10-10T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/Your-Buddhism-is-Indistinguishable-From-Its-Surroundings</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">MY_DREAM</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nc">karma</span><span class="o">.</span><span class="nf">chameleon</span>
+</span><span class='line'>  <span class="mi">2</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="n">you</span><span class="o">.</span><span class="n">action</span><span class="p">(</span><span class="n">come</span> <span class="o">&amp;&amp;</span> <span class="n">go</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>  <span class="no">Loving</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="ss">:easy</span> <span class="k">if</span> <span class="n">you</span><span class="o">.</span><span class="n">colors</span> <span class="o">==</span> <span class="no">MY_DREAM</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="o">[</span><span class="n">karma</span><span class="o">]</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chameleon</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<p>Karma Chameleon, by Culture Club</p>
+
+<pre><code>Karma karma karma karma karma chameleon
+You come and go
+You come and go
+Loving would be easy if your colors were like my dream
+Red, gold and green
+Red, gold and green
+</code></pre>
+
+<p>Symbol.to_proc?  Oh yes I went there.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Stop That]]></title>
+    <link href="http://calamitylane.com/programming/Stop-That/"/>
+    <updated>2008-10-08T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/Stop-That</id>
+    <content type="html"><![CDATA[<p>I&#8217;m compelled to highlight a gem I found in our codebase the other day. If you ever find yourself writing something like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">variable</span> <span class="o">==</span> <span class="n">value</span> <span class="p">?</span> <span class="kp">true</span> <span class="p">:</span> <span class="kp">false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8230;go sit in the corner and think about what you did wrong.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code Lyrical, for the Old Folks]]></title>
+    <link href="http://calamitylane.com/programming/Code-Lyrical-for-the-Old-Folks/"/>
+    <updated>2008-09-26T00:00:00-05:00</updated>
+    <id>http://calamitylane.com/programming/Code-Lyrical-for-the-Old-Folks</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">i</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">case</span> <span class="n">arg</span>
+</span><span class='line'>    <span class="k">when</span> <span class="n">older</span><span class="o">.</span><span class="n">reject</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:my_hair</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">years</span><span class="o">.</span><span class="n">from_now</span> <span class="o">&gt;=</span> <span class="no">MANY</span>
+</span><span class='line'>      <span class="nb">send</span><span class="p">(</span><span class="ss">:valentine</span><span class="p">,</span> <span class="ss">:birthday_greetings</span><span class="p">,</span> <span class="ss">:bottle_of_wine</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">door</span><span class="o">.</span><span class="n">lock</span> <span class="k">if</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span> <span class="o">&gt;=</span> <span class="no">Time</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;2:45&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">need</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">age</span> <span class="o">&lt;=</span> <span class="no">TOO_OLD</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">alias</span> <span class="ss">:feed</span><span class="p">,</span> <span class="ss">:need</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<p>When I&#8217;m 64 &#8211; The Beatles</p>
+
+<pre><code>When I get older losing my hair,
+Many years from now
+Will you still be sending me a valentine,
+Birthday greetings, bottle of wine?
+Will you still be sending me a valentine
+Birthday greetings, bottle of wine?
+If I'd been out till quarter to three
+Would you lock the door?
+Will you still need me, will you still feed me
+When I'm sixty-four? 
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

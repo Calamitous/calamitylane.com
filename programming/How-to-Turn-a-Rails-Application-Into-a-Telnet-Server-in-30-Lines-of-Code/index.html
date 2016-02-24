@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to Turn a Rails Application Into a Telnet Server in 30 Lines of Code! - Calamity Lane</title>
+  <meta name="author" content="Eric B. Budd">
+
+  
+  <meta name="description" content="How to Turn a Rails Application Into a Telnet Server in 30 Lines of Code! Apr 9th, 2007 Ruby on Rails is a beautiful thing; simple, fast, and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://calamitylane.com/programming/How-to-Turn-a-Rails-Application-Into-a-Telnet-Server-in-30-Lines-of-Code/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Calamity Lane" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-90527-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Calamity Lane</a></h1>
+  
+    <h2>Curious Code for Curious Coders</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:calamitylane.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Turn a Rails Application Into a Telnet Server in 30 Lines of Code!</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-09T00:00:00-05:00" pubdate data-updated="true">Apr 9<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Ruby on Rails is a beautiful thing; simple, fast, and powerful. As they say, it takes the pain out of web development.</p>
+
+<p>I&#8217;m fortunate enough to have been able to use Rails at work for a few months now, and the more I learn about the Rails framework and the Ruby language, the more enamoured I become of the simplicity, beauty, and zen-like nature of these tools. But you didn&#8217;t come here to see me gush with adoration like a schoolgirl at an Elvis concert, you came to see:</p>
+
+<h4>How to Turn a Rails Application Into a Telnet Server in 30 Lines of Code!</h4>
+
+<!--more-->
+
+
+
+
+<div class="warning">
+<h3>PLEASE DON&#8217;T DO THIS!</h3>
+<p>
+What follows was intended to illustrate the power and flexibility of Ruby, not to kickstart somebody&#8217;s server project.  It&#8217;s alarming that this has been the most popular page on my blog for nearly a year, and somewhat embarrassing that I haven&#8217;t let people know more explicitly that this should not be used in real software.
+</p><p>
+If you need to write a telnet server, you should really, really really be using <a href="http://rubyforge.org/projects/eventmachine">EventMachine</a> anyway, which is better than GServer in just about every possible way.  GServer is still OK for knocking out spikes or quick prototypes, just be aware that GServer runs in an event loop, whereas EventMachine uses callbacks&#8211; anything you write will need to be retooled to move from one to the other.
+</p><p>
+That said, here&#8217;s the original article.
+</p>
+</div>
+
+
+<p>First, some code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#!/usr/bin/env ruby</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;config/environment&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;gserver&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">TestServer</span> <span class="o">&lt;</span> <span class="no">GServer</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">begin</span>
+</span><span class='line'>      <span class="n">io</span><span class="o">.</span><span class="n">puts</span> <span class="s1">&#39;&gt;&gt; WELCOME &lt;&lt;&#39;</span>
+</span><span class='line'>      <span class="kp">loop</span> <span class="k">do</span>
+</span><span class='line'>        <span class="k">begin</span>
+</span><span class='line'>          <span class="n">telnet_input</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">gets</span>
+</span><span class='line'>          <span class="k">break</span> <span class="k">if</span> <span class="n">telnet_input</span> <span class="o">=~</span> <span class="sr">/Aquit/</span>
+</span><span class='line'>          <span class="n">io</span><span class="o">.</span><span class="n">puts</span> <span class="nb">eval</span><span class="p">(</span><span class="n">telnet_input</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">rescue</span> <span class="no">Exception</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span><span class='line'>          <span class="c1"># Got kabooms from trying to eval user input</span>
+</span><span class='line'>          <span class="c1"># Catch it &amp; let the user know</span>
+</span><span class='line'>          <span class="n">io</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Oops - </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>        <span class="n">log</span> <span class="s2">&quot;Received </span><span class="si">#{</span><span class="n">telnet_input</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">io</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;&gt;&gt; GOODBYE &lt;&lt;&quot;</span>
+</span><span class='line'>      <span class="n">io</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'>    <span class="k">rescue</span> <span class="no">Exception</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span><span class='line'>      <span class="c1"># The server blew up... handle it here</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;DOH! - </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">ts</span> <span class="o">=</span> <span class="no">TestServer</span><span class="o">.</span><span class="n">new</span> <span class="mi">1234</span>
+</span><span class='line'><span class="n">ts</span><span class="o">.</span><span class="n">start</span>
+</span><span class='line'><span class="n">ts</span><span class="o">.</span><span class="n">audit</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="n">ts</span><span class="o">.</span><span class="n">join</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This code should work, as is, on just about any Rails application (as far as I&#8217;ve been able to tell; it&#8217;s worked on the few I&#8217;ve tried).</p>
+
+<p>Last night I was tooling around, playing with code. I&#8217;d had an idea for some server software I&#8217;d like to write, so I mocked up a quick throwaway system in Rails, and started playing around with some of the logic. I liked the results, and I&#8217;d already decided I wanted to write the server in Ruby, but the thought of taking all that functionality and porting everything to DBI calls or whatever was handy just made me tired, especially since Rails does all the tedious database tasks for you.</p>
+
+<p>Fortunately, I&#8217;m slowly learning that Ruby is written for lazy programmers, and after a little Googling and some educated guesses, I was able to whack the entire Rails app into a script simply by including:</p>
+
+<pre><code>require 'config/environment'
+</code></pre>
+
+<p>&#8230;at the top of a file in the project root. This makes everything available to your application.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#!/usr/bin/env ruby</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;config/environment&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;gserver&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This sets the scripting environment, includes the Rails app, and makes the GServer class available. GServer is a freebie that comes with Ruby, so there&#8217;s no need for gem installs or other libraries.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">TestServer</span> <span class="o">&lt;</span> <span class="no">GServer</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We&#8217;re then creating our own class which inherits from GServer, and overriding its &#8220;serve&#8221; method, which is where all the interesting stuff happens.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">puts</span> <span class="s1">&#39;&gt;&gt; WELCOME &lt;&lt;&#39;</span>
+</span><span class='line'>  <span class="kp">loop</span> <span class="k">do</span>
+</span><span class='line'>    <span class="k">begin</span>
+</span><span class='line'>      <span class="n">telnet_input</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">gets</span>
+</span><span class='line'>      <span class="k">break</span> <span class="k">if</span> <span class="n">telnet_input</span> <span class="o">=~</span> <span class="sr">/Aquit/</span>
+</span><span class='line'>      <span class="n">io</span><span class="o">.</span><span class="n">puts</span> <span class="nb">eval</span><span class="p">(</span><span class="n">telnet_input</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">rescue</span> <span class="no">Exception</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span><span class='line'>      <span class="c1"># Got kabooms from trying to eval user input</span>
+</span><span class='line'>      <span class="c1"># Catch it &amp; let the user know</span>
+</span><span class='line'>      <span class="n">io</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Oops - </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">log</span> <span class="s2">&quot;Received </span><span class="si">#{</span><span class="n">telnet_input</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;&gt;&gt; GOODBYE &lt;&lt;&quot;</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">close</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is the heart of the server (without the exception handling). Simply speaking, the serve() method is what handles user connections, and the &#8220;io&#8221; object lets us do gets and puts across the wire.</p>
+
+<p>When a user connects, we spit out a welcome message, then go into an endless loop that responds to user requests. The following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="n">telnet_input</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">gets</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8230;grabs whatever line the user types in, terminating by default on a carriage return. We need to throw the result of io.gets into a variable, since making multiple calls to io.gets will cause the system to grab multiple lines of input from the stream.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>      <span class="k">break</span> <span class="k">if</span> <span class="n">telnet_input</span> <span class="o">=~</span> <span class="sr">/Aquit/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8230;kicks us out of the loop if the user types &#8220;quit&#8221;. The &#8220;A&#8221; portion of the regex matches the beginning of the string, and the &#8220;$&#8221; matches the &#8220;end of line&#8221; character.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">puts</span> <span class="nb">eval</span><span class="p">(</span><span class="n">telnet_input</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">log</span> <span class="s2">&quot;Received </span><span class="si">#{</span><span class="n">telnet_input</span><span class="si">}</span><span class="s2">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first line here does an eval() on whatever the user typed in, returning the value back across the wire. This should allow the user to run any command that Ruby (and your Rails app) will accept. The second line spits whatever the user typed in to the console where the server is running.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;&gt;&gt; GOODBYE &lt;&lt;&quot;</span>
+</span><span class='line'>  <span class="n">io</span><span class="o">.</span><span class="n">close</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once the loop is broken, we burp out a fond farewell and cleanly close the connection.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ts</span> <span class="o">=</span> <span class="no">TestServer</span><span class="o">.</span><span class="n">new</span> <span class="mi">1234</span>
+</span><span class='line'><span class="n">ts</span><span class="o">.</span><span class="n">start</span>
+</span><span class='line'><span class="n">ts</span><span class="o">.</span><span class="n">audit</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="n">ts</span><span class="o">.</span><span class="n">join</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The rest of the code just sets a few variables and runs the service. The &#8220;1234&#8221; on the creation of the &#8220;ts&#8221; object sets the listening port. Turning on auditing allows us to see when someone logs on and off from the console (which can easily be redirected to a log file).</p>
+
+<h5>CAVEATS:</h5>
+
+<p>This is an extremely simple server. It has no security, no performance optimization, and probably has more holes than a cheesecloth factory. It is very naïve, and while it technically allows multiple users to log on, they&#8217;ll all share the same class variables. Really, it&#8217;s only interesting at this point to show what can be done.</p>
+
+<p>That having been said, the ease with which I managed it is one of the many testaments to Ruby&#8217;s power and simplicity. I&#8217;ve programmed for many years, coded a number of servers, and this was the first time I&#8217;ve ever felt drunk with power after a coding session. &#8220;I can do anything!&#8221; I bellowed as I reeled around the room, knocking old monitors and dusty programming tomes off the desk. &#8220;No one can stop me!&#8221; Fortunately, my wife, who is a lot more level-headed than I am, pointed out that she could, indeed, stop me, since it had gone past two in the morning.</p>
+</div>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Post Footer Ad -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:100px"
+     data-ad-client="ca-pub-6957589948434185"
+     data-ad-slot="7974127752">
+</ins>
+<script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Eric B. Budd</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-09T00:00:00-05:00" pubdate data-updated="true">Apr 9<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://calamitylane.com/programming/How-to-Turn-a-Rails-Application-Into-a-Telnet-Server-in-30-Lines-of-Code/" data-via="" data-counturl="http://calamitylane.com/programming/How-to-Turn-a-Rails-Application-Into-a-Telnet-Server-in-30-Lines-of-Code/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/family/Harley-Quin-the-Amazing-Wonder-Dog/" title="Previous Post: Harley Quin the Amazing Wonder Dog">&laquo; Harley Quin the Amazing Wonder Dog</a>
+      
+      
+        <a class="basic-alignment right" href="/programming/Multi-line-strings-in-Ruby-I-Love-Carriage-Returns/" title="Next Post: Multi-line strings in Ruby-- I Love Carriage Returns!">Multi-line strings in Ruby-- I Love Carriage Returns! &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1>About Us</h1>
+    <p>
+        <strong>He's</strong> a high technologist from the Deep South.&nbsp;&nbsp;<strong>She's</strong> a globe-trotting industrial hygienist.&nbsp;&nbsp;<strong>Together</strong> they form-- The Calamiteam!&nbsp;&nbsp;<a href="/about.html">More...</a>
+    </p>
+</section>
+<section>
+    <h1>Contact</h1>
+    <ul id="contact">
+        <li class="first"><h3>Email</h3>eric.b.budd *at* gmail.com</li>
+        <li><h3>Github</h3><a href="http://github.com/Calamitous">Calamitous</a></li>
+        <li><h3>Twitter</h3><a href="http://twitter.com/clam_tea">@clam_tea</a></li>
+        <li><h3>Google+</h3><a href="https://plus.google.com/111869607518473560406?rel=author">Eric Budd</a></li>
+        <li><h3>Bitcoin Donation</h3>Like what you see?  Have extra bitcoins?  Feel free to donate! 1JZxefJdGNCVZxgHJKjAkS2pf6A8jiMdFd</li>
+    </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/ctrl-c-dot-club-is-live/">Ctrl-C.club is Live</a>
+      </li>
+    
+      <li class="post">
+        <a href="/programming/redir-is-awesome/">Redir is Awesome</a>
+      </li>
+    
+      <li class="post">
+        <a href="/hey-new-blog-software-again/">Hey, New Blog Software Again!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/programming/Hidden-Chrome-Features-on-CR-48/">Hidden Chrome Features on CR-48</a>
+      </li>
+    
+      <li class="post">
+        <a href="/programming/Chrome-OS-on-the-CR-48-It-Has-Developer-Bits/">Chrome OS on the CR-48: It Has Developer Bits!</a>
+      </li>
+    
+    <li><em><a href="/blog/archives">...and many more</a></em></li>
+  </ul>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/111869607518473560406?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Eric B. Budd -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'calamitylane';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Hidden Chrome Features on CR-48 - Calamity Lane</title>
+  <meta name="author" content="Eric B. Budd">
+
+  
+  <meta name="description" content="Hidden Chrome Features on CR-48 Dec 31st, 2010 After having playing around with ChromeOS on the CR-48 netbook (which I&#8217;ve blogged about before &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://calamitylane.com/programming/Hidden-Chrome-Features-on-CR-48/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Calamity Lane" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-90527-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Calamity Lane</a></h1>
+  
+    <h2>Curious Code for Curious Coders</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:calamitylane.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Hidden Chrome Features on CR-48</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-31T00:00:00-06:00" pubdate data-updated="true">Dec 31<span>st</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>After having playing around with ChromeOS on the CR-48 netbook (<a href="http://calamitylane.com/articles/programming/chrome-os-on-the-cr-48-it-has-developer-bits">which I&#8217;ve blogged about before</a>), I&#8217;ve found a few more interesting tidbits that let you dig deeper into the system.</p>
+
+<br /><br /><br />
+
+
+<h2>tl;dr</h2>
+
+<ul>
+<li>Experimental Features/Flash Drives: chrome://flags</li>
+<li>Nicer View of Memory Usage: about:memory</li>
+<li>Hilarious Pranks: about:crash</li>
+<li>Wi-Fi Troubleshooting: about:network</li>
+<li>Manage Extensions and Apps: chrome://extensions</li>
+</ul>
+
+
+<!--more-->
+
+
+<h2>Experimental Features/Flash Drives:</h2>
+
+<p>If you&#8217;ve tried to hook a flash drive up to your CR-48, you may have been disappointed to discover that the CR-48 doesn&#8217;t yet support this.</p>
+
+<p>Going to the address <strong>chrome://flags</strong> opens up a few options for you.  The page clearly states that these are experimental and possibly harmful, but there is an option to enable the &#8220;Advanced File System,&#8221; which includes USB and SD support.</p>
+
+<p>There are a few other features to play with: a built-in media player, remoting, background apps and so forth.  Definitely some good stuff to poke at in there.</p>
+
+<h2>Nicer View of Memory Usage:</h2>
+
+<p>In <a href="http://calamitylane.com/articles/programming/chrome-os-on-the-cr-48-it-has-developer-bits">my last post</a> I showed how &#8220;Shift-Esc&#8221; pops up a process viewer, which could be used to keep an eye on any misbehaving pages.  This is nice, but the window is tiny, and if you tend to have 40 or 50 tabs open at any given time, it can be burdensome to scroll through the list.</p>
+
+<p>Going to <strong>about:memory</strong> will give you a nice, full-page list of all your process&#8217; memory consumption.  This list is not sortable, but if you&#8217;re looking for a specific process, you can use the Chrome&#8217;s find-in-page function, since the memory usage displays as a regualar web page.</p>
+
+<h2>Hilarious Pranks:</h2>
+
+<p>Putting <strong>about:crash</strong> in the address bar shows Chrome&#8217;s &#8220;sad folder&#8221; crash page.</p>
+
+<p>Something about this makes me want to quietly set about:crash as someone&#8217;s homepage.  Probably because I am a terrible, terrible person.</p>
+
+<h2>Wi-Fi Troubleshooting:</h2>
+
+<p>Looking at <strong>about:network</strong> will show you a list of all available wi-fi and 3G connections (along with signal strength and other typical wi-fi info), and a list of &#8220;remembered&#8221; connections.</p>
+
+<p>If you&#8217;re playing with router settings or testing things, you can set this view to automatically refresh by appending a number of seconds to the address.  For example, pointing your browser to <strong>about:network/3</strong> will cause the page to refresh every 3 seconds.  This is handy if you&#8217;re looking for a good spot to set up; you can keep an eye on signal strengths as you move around.</p>
+
+<h2>Manage Extensions and Apps:</h2>
+
+<p>You&#8217;ve probably seen this one if you&#8217;re used to using Chrome on other OSes, but for some reason, on ChromeOS this doesn&#8217;t show up on the menu.  Going to <strong>chrome://extensions</strong> will show you a list of all your installed extensions and apps.  You can disable or uninstall them from here.</p>
+
+<p>Additionally, you can get to the &#8220;Developer Mode&#8221; options, which is handy if you&#8217;re writing a Chrome extension.  You can install a local extension, package it up, or force it to reload.</p>
+
+<p>I used this extensively while writing my <a href="https://chrome.google.com/webstore/detail/mbaomoafgihhkhgmkkoealeopilfdeaf#">Mustard Gas</a> extension.</p>
+
+<p>If you want to get into Chrome extension development, You can start <a href="http://code.google.com/chrome/extensions/getstarted.html">here</a> or begin with Google&#8217;s <a href="http://code.google.com/chrome/extensions/faq.html">FAQs</a>.  Chrome extensions are just HTML5 and Javascript, so if you&#8217;ve been doing any web development, you already know 90% of what you need to write Chrome extensions.</p>
+</div>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Post Footer Ad -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:100px"
+     data-ad-client="ca-pub-6957589948434185"
+     data-ad-slot="7974127752">
+</ins>
+<script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Eric B. Budd</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-31T00:00:00-06:00" pubdate data-updated="true">Dec 31<span>st</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://calamitylane.com/programming/Hidden-Chrome-Features-on-CR-48/" data-via="" data-counturl="http://calamitylane.com/programming/Hidden-Chrome-Features-on-CR-48/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/programming/Chrome-OS-on-the-CR-48-It-Has-Developer-Bits/" title="Previous Post: Chrome OS on the CR-48: It Has Developer Bits!">&laquo; Chrome OS on the CR-48: It Has Developer Bits!</a>
+      
+      
+        <a class="basic-alignment right" href="/hey-new-blog-software-again/" title="Next Post: Hey, New Blog Software Again!">Hey, New Blog Software Again! &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1>About Us</h1>
+    <p>
+        <strong>He's</strong> a high technologist from the Deep South.&nbsp;&nbsp;<strong>She's</strong> a globe-trotting industrial hygienist.&nbsp;&nbsp;<strong>Together</strong> they form-- The Calamiteam!&nbsp;&nbsp;<a href="/about.html">More...</a>
+    </p>
+</section>
+<section>
+    <h1>Contact</h1>
+    <ul id="contact">
+        <li class="first"><h3>Email</h3>eric.b.budd *at* gmail.com</li>
+        <li><h3>Github</h3><a href="http://github.com/Calamitous">Calamitous</a></li>
+        <li><h3>Twitter</h3><a href="http://twitter.com/clam_tea">@clam_tea</a></li>
+        <li><h3>Google+</h3><a href="https://plus.google.com/111869607518473560406?rel=author">Eric Budd</a></li>
+        <li><h3>Bitcoin Donation</h3>Like what you see?  Have extra bitcoins?  Feel free to donate! 1JZxefJdGNCVZxgHJKjAkS2pf6A8jiMdFd</li>
+    </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/ctrl-c-dot-club-is-live/">Ctrl-C.club is Live</a>
+      </li>
+    
+      <li class="post">
+        <a href="/programming/redir-is-awesome/">Redir is Awesome</a>
+      </li>
+    
+      <li class="post">
+        <a href="/hey-new-blog-software-again/">Hey, New Blog Software Again!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/programming/Hidden-Chrome-Features-on-CR-48/">Hidden Chrome Features on CR-48</a>
+      </li>
+    
+      <li class="post">
+        <a href="/programming/Chrome-OS-on-the-CR-48-It-Has-Developer-Bits/">Chrome OS on the CR-48: It Has Developer Bits!</a>
+      </li>
+    
+    <li><em><a href="/blog/archives">...and many more</a></em></li>
+  </ul>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/111869607518473560406?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Eric B. Budd -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'calamitylane';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

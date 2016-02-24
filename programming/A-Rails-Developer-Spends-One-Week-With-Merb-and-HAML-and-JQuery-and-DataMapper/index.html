@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Rails Developer Spends One Week With Merb (and HAML and JQuery and DataMapper) - Calamity Lane</title>
+  <meta name="author" content="Eric B. Budd">
+
+  
+  <meta name="description" content="A Rails Developer Spends One Week With Merb (and HAML and JQuery and DataMapper) Jan 8th, 2009 Developers often talk about some hot new technology &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://calamitylane.com/programming/A-Rails-Developer-Spends-One-Week-With-Merb-and-HAML-and-JQuery-and-DataMapper/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Calamity Lane" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-90527-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Calamity Lane</a></h1>
+  
+    <h2>Curious Code for Curious Coders</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:calamitylane.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Rails Developer Spends One Week With Merb (and HAML and JQuery and DataMapper)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-08T00:00:00-06:00" pubdate data-updated="true">Jan 8<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Developers often talk about some hot new technology they plan on spending time with, but very rarely do they ever get around to it.  I&#8217;m ordinarily in the same boat, but last week I had a new personal project crop up for a simple web application (5-6 models) which was an ideal candidate for testing out a slew of new tech that I&#8217;ve been meaning to get around to.</p>
+
+<p><a href="http://www.merbivore.com/">Merb</a>, an erstwhile competitor to Rails, has been making a big splash lately.  I decided to step out of my comfort zone of Rails/Acti* and into the wild and woolly world of young, cutting-edge frameworks.  Since I&#8217;m undergoing the pain of learning a new framework, I figured I&#8217;d go whole hog and use <a href="http://haml.hamptoncatlin.com">Haml</a>, <a href="http://jquery.com/">jQuery</a>, and <a href="http://datamapper.org/doku.php">DataMapper</a>, as well.</p>
+
+<p>Before last week, I&#8217;d never done much more than spin through the initial tutorials for any of these tools.  That being the case, I can&#8217;t really speak to performance, deployment, or any of half-a-hundred other critical issues to consider when selecting a framework&#8211; this is strictly a shallow, first-impressions review.</p>
+
+<p>I welcome comments and corrections to my observations, and suggestions for easing some of the new-developer pain.</p>
+
+<!--more-->
+
+
+<h1><a href="http://www.merbivore.com/">Merb</a></h1>
+
+<p>Having only recently reached 1.0, Merb&#8217;s still a bit rough around the edges.  Documentation and tutorials are sparse, and there are a few API decisions that feel odd, but all that&#8217;s to be expected.</p>
+
+<p>Fortunately, a Rails developer will have no trouble whatsoever translating their experience wholesale over to Merb.  Everything feels familiar and works as expected.  Even some Rails functions which are not documented anywhere in Merb (such as &#8216;cycle&#8217;) are present and work as expected.</p>
+
+<p>Overall, using Merb is a reasonably pain-free experience and follows the <abbr title="Principle of Least Surprise">POLS</abbr>, with a few minor exceptions.</p>
+
+<p>Most surprising so far is that there is no (evident) standardized way to handle resources with uncountable names.  Merb eschews Rails&#8217; &#8220;-Controller&#8221; addendum for class names, separating models and controllers strictly by pluralization.  You&#8217;ll run into naming collisions with uncountable class names (&#8220;Series&#8221;, for example).  This is not difficult to fix, but it&#8217;s a surprising oversight for someone used to the smooth Rails development process.</p>
+
+<p>The app I&#8217;m building will only have two or three users, so performance is not a major concern at this point (I may even leave the database in sqlite3).  I <em>will</em> say that Merb starts up like a screaming banshee compared to Rails, which is good, since you&#8217;ll be restarting a <em>lot</em> during development.</p>
+
+<p>Merb automatically reloads when you modify a model or controller file, but not when you modify a view file.  I know there&#8217;s a perfectly rational reason behind this, but it can be frustrating, since the view templates are something to I do a lot of &#8220;minor tweak->restart->check&#8221; to.  Additionally, I tend to do a lot of exploratory testing of my model code in the console, and the automatic restarts don&#8217;t save me much time, but they do wipe out my command history, so I need to keep my cut-n-paste skills sharp or else retype a lot of testing code.</p>
+
+<p>A last nitpick is that the community doesn&#8217;t seem quite as friendly or responsive as Rails&#8217;.  It&#8217;s one of those somewhat understandable but still frustrating experiences&#8211; yes, it&#8217;s open-source, I can patch-and-submit, etc., but when I&#8217;m having a problem <em>right now,</em> I&#8217;m not interested in hacking the framework&#8211; <em>especially</em> if it&#8217;s likely that only my ignorance causing the problem.  I generally try very hard to work things out on my own before making a ticket or jumping into IRC, precisely because I know how difficult and ungratifying it can be to keep up with support requests.  The responses, especially on the tickets, do not always seem carefully thought out.</p>
+
+<p>That said, there is much to love about Merb.  A few killer (for me) features create a much more pleasant development experience than Rails.  Some that stood out:</p>
+
+<ul>
+<li>RSpec is the default testing framework.  This is long overdue in Rails&#8211; not having to jump through the install-gem-and-plugin-and-wait-what-version-of-rails hoops just to use RSpec is a huge burden gone.</li>
+<li>Using a different ORM or view templating system requires changing only a single line of code (well, that and installing the 49 gems that get it running).  This is much nicer then Rails&#8217; heavy and largely immovable dependencies.</li>
+<li>Specs are broken out into only two areas: models and requests.  The use of &#8216;requests&#8217; eliminates the often-fuzzy line between controller and fragile view specs.</li>
+</ul>
+
+
+<p>Overall, Merb feels much cleaner and less crufty than Rails.</p>
+
+<p>Shortly after I started working with Merb, the merge with Rails was announced.  I&#8217;m ambivalent about it at the moment, but hopefully the Merb side will pick up the stability and smoothness of the Rails process (and some of the Rails community), and Rails can pick up many of Merb&#8217;s new concepts.</p>
+
+<h1><a href="http://haml.hamptoncatlin.com/">Haml</a></h1>
+
+<p>I&#8217;ve never been comfortable with ERb templates.  They smack of the raw string replacement philosophy of classic ASP.  I&#8217;ve long suspected that there must be a better way to handle view templating, but had no real idea how it could be accomplished.  Haml is one of the first systems I&#8217;ve seen to take a reasonable stab at this problem.</p>
+
+<p>Haml was a solid win across the board.  It&#8217;s stable, works exactly as advertised, and beats the pants off of ERb.  Documentation is complete and effective.  I can&#8217;t speak about the support community, since I didn&#8217;t have a single question that wasn&#8217;t answered almost immediately by the documentation.</p>
+
+<p>Really, I don&#8217;t know what better to say about a piece of software than &#8220;it worked well, cleaned up my code, and saved me a bunch of headaches.&#8221;</p>
+
+<p>It does take a little while to get your head into, but once you&#8217;re there it&#8217;s very intuitive and flows naturally if you&#8217;re familiar with basic css selectors.  It&#8217;s whitespace-sensitive (like Python), which eliminates a lot of the nesting you end up doing in ERb, and keeps your view templates looking nice.</p>
+
+<p>Some folks have an inexplicable aversion to whitespace-sensitivity: if you&#8217;re one of them, then you will definitely not like Haml.</p>
+
+<p>Nonetheless, I think that nearly anyone who follows the advice on Haml&#8217;s homepage and takes twenty minutes to convert one of their existing ERb templates (the uglier the better) will be a convert.</p>
+
+<p>For any future projects where it&#8217;s possible, I&#8217;ll be using Haml.</p>
+
+<h1><a href="http://jquery.com/">jQuery</a></h1>
+
+<p>I&#8217;ll admit that I&#8217;ve openly derided the concept of &#8220;unobtrusive javascript,&#8221; which is a core concept of the jQuery library.  This is one case where I was utterly, embarrassingly, and happily wrong.</p>
+
+<p>I don&#8217;t have much client-side AJAXy fanciness going on, but having all the javascript code out of my way made development much easier, and the maintenance is clearly going to be less of a burden.</p>
+
+<p>jQuery&#8217;s DOM handling is very clear, and there&#8217;s a surprising amount of flexibility and power easily available once you start digging into it.</p>
+
+<p>I still don&#8217;t <em>like</em> javascript, but jQuery makes it much, much more tolerable.</p>
+
+<h1><a href="http://www.datamapper.org/">DataMapper</a></h1>
+
+<p>DataMapper was the biggest disappointment of the lot.  I&#8217;d seen a presentation and played with it a bit.  I was very excited about it, because there are some very good ideas in DataMapper.  Unfortunately, the actual implementation is a bit of a train wreck.</p>
+
+<p>The last time I used it, nearly a year ago, I was trying to tie it to CouchDB.  At the time, I wrote off my difficulties as 1) my limited understanding of DataMapper, and 2) trying to shoehorn a document database into a relational ORM with an incomplete library.</p>
+
+<p>I&#8217;m sorry to report that the &#8220;correct&#8221; DataMapper experience is not significantly better.  Documentation and examples are painfully sparse, and several pieces simply don&#8217;t work well.  Validation could not be made to function consistently, and associations are fraught with guesswork, when they work at all.</p>
+
+<p>At one point, after four hours of frustration, I turned to IRC, where an admittedly helpful and pleasant person informed me that many-to-many associations in DataMapper are broken for a number of edge cases, and probably shouldn&#8217;t be used.  I indicated, in the nicest way I could manage, that this should probably be displayed somewhere prominent on DataMapper&#8217;s website.</p>
+
+<p>The API is still in flux, so the few tutorials and examples that Google finds are likely as not to be out of date.  It&#8217;s not hard to work around many of the missing or broken features, but the resultant code is slow to write, ugly to look at, and feature-incomplete.</p>
+
+<p>DataMapper was so sharply disappointing precisely because it shows so much promise.  Much of the silliness of ActiveRecord is leapfrogged entirely&#8211; things like counts and association loading are handled in a more rational way, slimming the API and boosting performance.</p>
+
+<p>My understanding is that they&#8217;re in the midst of an extended rewrite, and there are parts of the API (especially surrounding the problematic associations) that are under review for changes.  Hopefully they will be able to turn the quality around; the 0.9.8 version number belies the incompleteness of the library.</p>
+
+<h1><a href="http://rspec.info/">RSpec Bonus!</a> 5% more verbiage FREE</h1>
+
+<p>RSpec is a beautiful thing.  If you aren&#8217;t you using it already, you are missing out on faster, more effective testing.  As testing frameworks go, RSpec is one of the best.</p>
+
+<p>Others have stated more eloquently why <strong>You.should be_using_rspec</strong></p>
+
+<h1>Overall</h1>
+
+<p>I hope I don&#8217;t give the impression here that working with Merb and cohorts is at all unpleasant&#8211; quite the opposite.  It&#8217;s far easier to burn up the wordcount criticizing flaws than it is saying &#8220;Works great,&#8221; and make no mistake that nearly everything works great.  Despite having not yet spent much time with these tools, I already have a comfortable workflow, and I certainly wouldn&#8217;t be continuing development if the benefits these tools provide didn&#8217;t outweigh the nitpicks I&#8217;ve been running into.</p>
+
+<p>Merb is not the revolutionary leap that Rails was, but it&#8217;s a clear evolutionary step.  Despite some roughness in a few places, it&#8217;s a great system to work with, and I look forward to good things coming out of Merb&#8217;s and Rails&#8217; merge.</p>
+</div>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Post Footer Ad -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:100px"
+     data-ad-client="ca-pub-6957589948434185"
+     data-ad-slot="7974127752">
+</ins>
+<script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Eric B. Budd</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-08T00:00:00-06:00" pubdate data-updated="true">Jan 8<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://calamitylane.com/programming/A-Rails-Developer-Spends-One-Week-With-Merb-and-HAML-and-JQuery-and-DataMapper/" data-via="" data-counturl="http://calamitylane.com/programming/A-Rails-Developer-Spends-One-Week-With-Merb-and-HAML-and-JQuery-and-DataMapper/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/programming/If-You-Like-Lyrical-Code/" title="Previous Post: If You Like Lyrical Code...">&laquo; If You Like Lyrical Code...</a>
+      
+      
+        <a class="basic-alignment right" href="/programming/Select-Tag-Funkiness-With-Merb/" title="Next Post: Select Tag Funkiness With Merb">Select Tag Funkiness With Merb &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1>About Us</h1>
+    <p>
+        <strong>He's</strong> a high technologist from the Deep South.&nbsp;&nbsp;<strong>She's</strong> a globe-trotting industrial hygienist.&nbsp;&nbsp;<strong>Together</strong> they form-- The Calamiteam!&nbsp;&nbsp;<a href="/about.html">More...</a>
+    </p>
+</section>
+<section>
+    <h1>Contact</h1>
+    <ul id="contact">
+        <li class="first"><h3>Email</h3>eric.b.budd *at* gmail.com</li>
+        <li><h3>Github</h3><a href="http://github.com/Calamitous">Calamitous</a></li>
+        <li><h3>Twitter</h3><a href="http://twitter.com/clam_tea">@clam_tea</a></li>
+        <li><h3>Google+</h3><a href="https://plus.google.com/111869607518473560406?rel=author">Eric Budd</a></li>
+        <li><h3>Bitcoin Donation</h3>Like what you see?  Have extra bitcoins?  Feel free to donate! 1JZxefJdGNCVZxgHJKjAkS2pf6A8jiMdFd</li>
+    </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/ctrl-c-dot-club-is-live/">Ctrl-C.club is Live</a>
+      </li>
+    
+      <li class="post">
+        <a href="/programming/redir-is-awesome/">Redir is Awesome</a>
+      </li>
+    
+      <li class="post">
+        <a href="/hey-new-blog-software-again/">Hey, New Blog Software Again!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/programming/Hidden-Chrome-Features-on-CR-48/">Hidden Chrome Features on CR-48</a>
+      </li>
+    
+      <li class="post">
+        <a href="/programming/Chrome-OS-on-the-CR-48-It-Has-Developer-Bits/">Chrome OS on the CR-48: It Has Developer Bits!</a>
+      </li>
+    
+    <li><em><a href="/blog/archives">...and many more</a></em></li>
+  </ul>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/111869607518473560406?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Eric B. Budd -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'calamitylane';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
