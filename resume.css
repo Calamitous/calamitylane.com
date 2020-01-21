@@ -62,7 +62,7 @@ a#pdf:hover { background: #222; }
 .page-breaker { page-break-before: always; }
 .page-ender { page-break-after: always; }
 
-.project { position: relative; padding-top: 1em; padding-bottom: 1em; border-top: 1px solid #ccc; }
+.project { position: relative; padding-top: 1em; padding-bottom: 1em; border-top: 1px solid #ccc; page-break-inside: avoid; }
 .project h4 { position: absolute; top: 1em; right: 0 }
 .project p { margin: 0.75em 0 0.75em 0; }
 

@@ -1,0 +1,231 @@
+<html>
+  <head>
+    <title>"Rubik's" Twisty Puzzle Algorithms</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/png" href="/images/rubiks-icon.png"/>
+
+    <style>
+      .row { margin-top: 1rem; }
+      .nav { position: fixed; top: 0; left: 0; }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>"Rubik's" Twisty Puzzle Algorithms</h2>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="#4x4x4">4x4x4</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#5x5x5">5x5x5</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#barrel-octagon">Barrel/Octagon</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#megaminx">Megaminx</a>
+        </li>
+      </ul>
+
+      <p>&nbsp;</p>
+      <a id="4x4x4">
+      <h3>4x4x4</h3>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>PLL Final Dedge Flip</h5>
+          <pre>
+            r'  U2 l  F2 l' F2
+            r'2 U2 r  U2 r U2
+            F2  r2 F2
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>PLL Final Dedge Flip (Alternate)</h5>
+          <pre>
+            r2 B2 U2 l  U2
+            r' U2 r  U2 F2
+            r  F2 l' B2 r2
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>Cross-dedge swap</h5>
+          <pre>
+            Ll' U2  Ll' U2
+            F2  Ll' F2  Rr
+            U2  Rr' U2  Ll2
+          </pre>
+        </div>
+      </div>
+
+      <a id="5x5x5">
+      <h3>5x5x5</h3>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>OLL Final inner edge flip</h5>
+          <pre>
+            Rr2 B2  U2  Ll
+            U2  Rr' U2  Rr
+            U2  F2  Rr  F2
+            Ll' B2  Rr2
+          </pre>
+        </div>
+      </div>
+
+      <a id="barrel-octagon">
+      <h3>Barrel/Octagon</h3>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>Parity (flipped edge on BR)</h5>
+          <pre>
+            R H R H R H R H
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>Rotate top and right</h5>
+          <pre>
+            v' h' v u
+            v' h  v u'
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>Rotate center 90 degrees (rotates F and U centers)</h5>
+          <pre>
+            F  B' L  R' U  D'
+            F'
+            U' D  L' R  F' B
+            U
+          </pre>
+        </div>
+      </div>
+
+      <a id="megaminx">
+      <h3>Megaminx</h3>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>General Solution</h5>
+          <pre>
+            1st side (Intuitive)
+
+            2L Edge drops
+
+            Snake Lower Corners (Intuitive)
+            Snake Edge Drops
+            Snake Upper Corners (Intuitive)
+
+            4L Edge Drops
+
+            OLL Top star
+            PLL Top star
+            PLL Corners
+            OLL Corners
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>Edge Drop (2L and 4L)</h5>
+          <h6>Left algorithm</h6>
+          <pre>
+            U' L' U L U F U' F'
+          </pre>
+          <h6>Right algorithm</h6>
+          <pre>
+            U R U' R' U' F' U F
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>Snake Edge Drop</h5>
+          <h6>Left algorithm</h6>
+          <pre>
+            F' R' F'2 R F
+          </pre>
+          <h6>Right algorithm</h6>
+          <pre>
+            F L F2 L' F'
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>OLL Top Star</h5>
+          <h6>Flip F and R</h6>
+          <pre>
+            F U R U' R' F'
+          </pre>
+          <h6>Flip F and Br</h6>
+          <pre>
+            F R U R' U' F'
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>PLL Top Star</h5>
+          <h6>F, L, Bl (clockwise)</h6>
+          <pre>
+            R U R' U R U3 R' U
+          </pre>
+          <h6>F, L, Bl (counterclockwise)</h6>
+          <pre>
+            U' R U2 R' U' R U' R'
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>PLL Corners</h5>
+          <h6>Lf, Lb, B (clockwise)</h6>
+          <pre>
+            L' U2 R U'2
+            L U2 R' U'2
+          </pre>
+          <h6>Rf, Rb, B (counterclockwise)</h6>
+          <pre>
+            R U'2 L' U2
+            R' U'2 L U2
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>OLL Corners</h5>
+          <h6>Start with any correctly oriented on Lf</h6>
+          <pre>
+            R' D' R D (Repeat until correctly oriented)
+            U (to move next disoriented corner to Lf)
+            Repeat above until solved
+          </pre>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
