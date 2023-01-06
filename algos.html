@@ -9,7 +9,10 @@
 
     <style>
       .row { margin-top: 1rem; }
+      .row:hover { background-color: #CDD; }
       .nav { position: fixed; top: 0; left: 0; }
+      .nav-link { color: #788; }
+      .nav-link:hover { color: white; background-color: #788 }
     </style>
   </head>
 
@@ -28,6 +31,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#barrel-octagon">Barrel/Octagon</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#tower-banana">Tower/Banana 2x2x3</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#megaminx">Megaminx</a>
@@ -176,6 +182,27 @@
             F'
             U' D  L' R  F' B
             U
+          </pre>
+        </div>
+      </div>
+
+      <a id="tower-banana">
+      <h3>Tower/Banana 2x2x3</h3>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>Corner Swap (LFT <-> RFT)</h5>
+          <pre>
+            F U' F U F R U R U' R
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5>Center Swap (RFC <-> RBC)</h5>
+          <pre>
+            R U2 R U2 R U2
           </pre>
         </div>
       </div>
